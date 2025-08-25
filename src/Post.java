@@ -1,19 +1,21 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-public class Post {
+public class Post implements Comparable<Post>{
 	
-	Integer userID;
+	String userID;
 	Integer numberofPosts;
 	/**
 	 * @return the userID
 	 */
-	public Integer getUserID() {
+	public String getUserID() {
 		return userID;
 	}
 	/**
 	 * @param userID the userID to set
 	 */
-	public void setUserID(Integer userID) {
+	public void setUserID(String userID) {
 		this.userID = userID;
 	}
 	/**
@@ -30,7 +32,7 @@ public class Post {
 	}
 	@Override
 	public String toString() {
-		return "Post [userID=" + userID + ", numberofPosts=" + numberofPosts + "]";
+		return "{userID=" + userID + ", numberofPosts=" + numberofPosts + "}";
 	}
 	@Override
 	public int hashCode() {
@@ -47,11 +49,23 @@ public class Post {
 		Post other = (Post) obj;
 		return Objects.equals(numberofPosts, other.numberofPosts) && Objects.equals(userID, other.userID);
 	}
-	public Post(Integer userID, Integer numberofPosts) {
+	public Post(String userID, Integer numberofPosts) {
 		super();
 		this.userID = userID;
 		this.numberofPosts = numberofPosts;
 	}
+	@Override
+	public int compareTo(Post o) {
+		return Integer.compare(o.numberofPosts, this.numberofPosts);
+	}
+	
+	
+	public Map<String, Integer> toMap(){
+		Map<String, Integer> map = new HashMap<>();
+		map.put(userID, numberofPosts);
+		return map;
+	}
+	
 	
 	
 	
